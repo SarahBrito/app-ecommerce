@@ -1,0 +1,12 @@
+@use '../../global.scss';
+
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: auto;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 48px;
+  border: 1px solid global.$border-color;
+}

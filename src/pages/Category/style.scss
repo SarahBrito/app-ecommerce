@@ -1,0 +1,19 @@
+@use '../../global.scss';
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 48px 0;
+}
+
+.category-products {
+  display: flex;
+  margin-top: 48px;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+
+.category-title {
+  text-transform: capitalize;
+}
