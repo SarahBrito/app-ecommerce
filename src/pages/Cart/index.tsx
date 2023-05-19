@@ -31,7 +31,7 @@ const Cart = () => {
     <div className="cart-container">
       <h2>Your shopping cart</h2>
       <div className="cart-item-container">
-        {cartItems.map((item:any, index:any)=>{
+        {cartItems.map((item:any)=>{
           return (
             <div key={item.id} className="cart-item">
               <div className="cart-item-image">

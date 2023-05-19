@@ -30,13 +30,7 @@ const Details = () => {
     fetch(`https://fakestoreapi.com/products/${id}`)
             .then(res =>res.json())
             .then(json => {
-              const product: Product = {
-                id: json.id,
-                title: json.title,
-                price: json.price,
-                description: json.description,
-                image: json.image
-              }
+              
               setproduct(json)
               
             })
