@@ -4,33 +4,43 @@ import { Link, useParams } from 'react-router-dom';
 import { useEcommerce } from '../../context/EcommerceContex';
 
 import './style.scss'
+import Select from '../../components/select';
 
 interface Product {
   id:number,
   title: string,
   price: string,
   description:string,
-  image: string
+  image: string,
+  quantity: number
 }
 
 const Details = () => {
   const {id} = useParams()
-  const {addToCart} = useEcommerce()
+  const {addToCart, selectedValue, updateSelectedValue} = useEcommerce()
 
   const [product, setproduct] = useState<Product | null >(null);
 
-  const [selectedValue, setSelectedValue] = useState('');
-  
-  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    setSelectedValue(value);
+  const handleSelectChange = (value: string) => {
+    updateSelectedValue(value);
   };
+
+  const options = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+    { value: '5', label: '5' },
+    { value: '6', label: '6' },
+    { value: '7', label: '7' },
+  ];
+
   
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
             .then(res =>res.json())
             .then(json => {
-              
+          
               setproduct(json)
               
             })
@@ -43,12 +53,13 @@ const Details = () => {
         title: product.title,
         price: product.price,
         description: product.description,
-        image: product.image
+        image: product.image,
+        quantity: 0
       };
       console.log("Produto adicionado", productItem)
       addToCart(productItem)
-  }
-  }
+  }}
+  
   return ( 
     <div className='details-container'> 
           <Link to={'/'} className='back-home'>Voltar</Link>
@@ -61,18 +72,7 @@ const Details = () => {
               <span>R$ {product?.price}</span>
               <div className="quantity-items">
                 <span>Quantidade</span>
-                <select value={selectedValue} onChange={handleSelectChange}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
+                <Select options={options} value={selectedValue} onChange={handleSelectChange}/>
               </div>
               
               <button className='btn-add-cart' onClick={handleAddToCart}>Adicionar ao carrinho</button>

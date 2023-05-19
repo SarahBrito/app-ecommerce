@@ -6,13 +6,12 @@ import './style.scss';
 
 const Cart = () => {
 
-  const { cartItems } = useEcommerce()
-
-  const [selectedValue, setSelectedValue] = useState('');
-
+  const { cartItems, selectedValue, updateSelectedValue, removeProduct } = useEcommerce()
+  
+  
 
   const handleSelectChange = (value: string) => {
-    setSelectedValue(value);
+    updateSelectedValue(value);
   };
 
   const options = [
@@ -25,8 +24,9 @@ const Cart = () => {
     { value: '7', label: '7' },
   ];
 
- 
-
+  const handleProductDeleted = (id:any) => {
+    return removeProduct(id)
+}
   return ( 
     <div className="cart-container">
       <h2>Your shopping cart</h2>
@@ -43,11 +43,11 @@ const Cart = () => {
                 <span>Quantidade</span>
                 <Select options={options} value={selectedValue} onChange={handleSelectChange} />
               </div>
-              <button className="cart-item-delete">Excluir</button>
+              <button className="cart-item-delete" onClick={() => handleProductDeleted(item.id)}>Excluir</button>
               <span className="cart-item-amount">
-               R$ {'00,00'} 
+               R$ {(parseFloat(item.price) * parseFloat(selectedValue))} 
               </span>
-              {/* <p>Valor selecionado: {selectedValue}</p> */}
+             
             </div>
             
           )
