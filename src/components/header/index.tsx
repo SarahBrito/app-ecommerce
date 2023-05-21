@@ -2,11 +2,9 @@ import './style.scss'
 
 import IconCart from '../iconCart';
 import { useState } from 'react';
-import { useEcommerce } from '../../context/EcommerceContex';
 
 const Header = () => {
-  // const { getProductFilter } = useEcommerce()
-
+  
   const [searchValue, setSearchValue] = useState('');
   
 

@@ -20,8 +20,8 @@ interface EcommerceContextProps {
   removeProduct: (value: number) => void;
   getProductsCategories: (value:string) => void
   handleShowCategoriesAll: ( ) => void
-  incrementValue:()=> void
-  decrementValue:()=> void
+  // incrementValue:()=> void
+  // decrementValue:()=> void
   quantity: number
   updateItemValue: (itemId:number, newValue:number)=>void
 }
@@ -61,13 +61,13 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
   
   const [quantity, setQuantity] = useState(0);
 
-  const incrementValue = () => {
-    setQuantity(quantity + 1);
-  };
+  // const incrementValue = () => {
+  //   setQuantity(quantity + 1);
+  // };
 
-  const decrementValue = () => {
-    setQuantity(quantity - 1);
-  };
+  // const decrementValue = () => {
+  //   setQuantity(quantity - 1);
+  // };
 
   const updateItemValue = (itemId:number, newValue:number) => {
     const itemIndex = cartItems.findIndex((item) => item.id === itemId);
@@ -126,8 +126,8 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
       products,
       getProductsCategories,
       handleShowCategoriesAll,
-      incrementValue,
-      decrementValue,
+      // incrementValue,
+      // decrementValue,
       quantity,
       updateItemValue
       
@@ -148,8 +148,8 @@ export const useEcommerce = () =>{
     products,
     getProductsCategories,
     handleShowCategoriesAll,
-    incrementValue,
-    decrementValue,
+    // incrementValue,
+    // decrementValue,
     quantity,
     updateItemValue
   } = context
@@ -162,8 +162,8 @@ export const useEcommerce = () =>{
     products,  
     getProductsCategories, 
     handleShowCategoriesAll,
-    incrementValue,
-    decrementValue,
+    // incrementValue,
+    // decrementValue,
     quantity,
     updateItemValue
   }
