@@ -1,0 +1,13 @@
+@use '../../global.scss';
+
+.back-home {
+  border: 1px solid global.$border-color;
+  width: 180px;
+  height: 46px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

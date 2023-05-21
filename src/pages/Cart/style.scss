@@ -79,4 +79,25 @@
 .cart-subtotal {
   display: flex;
   justify-content: end;
+
+  span {
+    font-size: 24px;
+    font-weight: 700;
+    color:#242a3a;
+  }
 }
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 142px;
+  border-bottom: 1px solid global.$border-color;
+}
+
+.button-decrement, .button-increment {
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+}
+

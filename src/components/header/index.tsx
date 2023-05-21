@@ -1,21 +1,37 @@
-import { Link } from 'react-router-dom';
-import { useEcommerce } from '../../context/EcommerceContex';
 import './style.scss'
 
-import { IoCartOutline } from 'react-icons/io5'
+import IconCart from '../iconCart';
+import { useState } from 'react';
+import { useEcommerce } from '../../context/EcommerceContex';
 
 const Header = () => {
-  const { quantityCartItems } = useEcommerce()
-  return ( 
+  // const { getProductFilter } = useEcommerce()
+
+  const [searchValue, setSearchValue] = useState('');
+  
+
+  const handleSearchChange = (event:any) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleSearchSubmit = (event:any) => {
+    event.preventDefault();
+    console.log('Valor da busca:', searchValue);
+  };
+
+   return ( 
     <header>
-      <input type="search" className="search-product" placeholder="Search product"/>
-      <div className="icon-cart">
-        <Link to={'/cart'}>
-          <IoCartOutline size={25}/>
-        </Link>
-        
-        <span>{quantityCartItems}</span>
-      </div>
+      <form onSubmit={handleSearchSubmit}>
+        <input 
+        type="text" 
+        value={searchValue} 
+        className="search-product" 
+        placeholder="Search product" 
+        onChange={handleSearchChange}
+        />
+      </form>
+      
+      <IconCart />
     </header>
    );
 }

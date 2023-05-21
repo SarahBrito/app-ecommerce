@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { useEcommerce } from '../../context/EcommerceContex';
 
 import './style.scss'
-import Select from '../../components/select';
+
+import IconCart from '../../components/iconCart';
+import ButtonHome from '../../components/buttonHome';
 
 interface Product {
   id:number,
@@ -13,56 +15,71 @@ interface Product {
   description:string,
   image: string,
   quantity: number
+  category: string
 }
 
 const Details = () => {
   const {id} = useParams()
-  const {addToCart, selectedValue, updateSelectedValue} = useEcommerce()
+  const {addToCart} = useEcommerce()
 
-  const [product, setproduct] = useState<Product | null >(null);
+  const [product, setProduct] = useState<Product | null >(null);
 
-  const handleSelectChange = (value: string) => {
-    updateSelectedValue(value);
-  };
-
-  const options = [
-    { value: '1', label: '1' },
-    { value: '2', label: '2' },
-    { value: '3', label: '3' },
-    { value: '4', label: '4' },
-    { value: '5', label: '5' },
-    { value: '6', label: '6' },
-    { value: '7', label: '7' },
-  ];
-
+  // useEffect(() => {
+  //   fetch(`https://fakestoreapi.com/products/${id}`)
+  //           .then(res =>res.json())
+  //           .then(json => {
+  //             setproduct(json)
+  //           })
+  // }, [id]);
   
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-            .then(res =>res.json())
-            .then(json => {
-          
-              setproduct(json)
-              
-            })
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchData();
   }, [id]);
+
 
   const handleAddToCart = () => {
     if (product) {
-      const productItem: Product = {
+      const productItem: Product = 
+        {
         id: product.id,
         title: product.title,
         price: product.price,
         description: product.description,
         image: product.image,
-        quantity: 0
+        category: product.category,
+        quantity: product.quantity    
       };
-      console.log("Produto adicionado", productItem)
+     
       addToCart(productItem)
+      console.log("Produto adicionado", productItem)
+      
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        text: `Produto adicionado ao carrinho`,
+        showConfirmButton: false,
+        timer: 1500,
+        width: 500,
+        
+      })
   }}
-  
+
   return ( 
     <div className='details-container'> 
-          <Link to={'/'} className='back-home'>Voltar</Link>
+          <div className="details-header">
+            <ButtonHome />
+            <IconCart />
+          </div>
           <section className='product-details'>
             <div className='details-img'>
               <img src={product?.image} alt="" />
@@ -70,10 +87,6 @@ const Details = () => {
             <div className='datails-info'>
               <h2>{product?.title}</h2>
               <span>R$ {product?.price}</span>
-              <div className="quantity-items">
-                <span>Quantidade</span>
-                <Select options={options} value={selectedValue} onChange={handleSelectChange}/>
-              </div>
               
               <button className='btn-add-cart' onClick={handleAddToCart}>Adicionar ao carrinho</button>
             </div>

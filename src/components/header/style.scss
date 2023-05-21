@@ -16,24 +16,3 @@ header {
   border-radius: 6px;
 }
 
-.icon-cart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  span {
-    background-color:#dcdcdc;
-    height: 20px;
-    width: 20px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: -5px;
-    right: -20px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-}

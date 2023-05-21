@@ -1,64 +1,79 @@
-import Select from "../../components/select";
+
+import ButtonHome from "../../components/buttonHome";
+
 import { useEcommerce } from "../../context/EcommerceContex";
 
 import './style.scss';
 
 const Cart = () => {
 
-  const { cartItems, selectedValue, updateSelectedValue, removeProduct } = useEcommerce()
+  const { cartItems, removeProduct, updateItemValue } = useEcommerce()
   
+  const handleDecrement = (itemId: number) => {
+    const item = cartItems.find((item) => item.id === itemId);
+    if (item && item.quantity > 1) {
+      updateItemValue(itemId, item.quantity - 1);
+    }
+    };
   
-
-  const handleSelectChange = (value: string) => {
-    updateSelectedValue(value);
+  const handleIncrement = (itemId: number) => {
+    const item = cartItems.find((item) => item.id === itemId);
+    if (item) {
+      updateItemValue(itemId, item.quantity + 1);
+    }
   };
-
-  const options = [
-    { value: '1', label: '1' },
-    { value: '2', label: '2' },
-    { value: '3', label: '3' },
-    { value: '4', label: '4' },
-    { value: '5', label: '5' },
-    { value: '6', label: '6' },
-    { value: '7', label: '7' },
-  ];
-
-  const handleProductDeleted = (id:any) => {
+  
+  const handleProductDeleted = (id:number) => {
     return removeProduct(id)
-}
-  return ( 
-    <div className="cart-container">
-      <h2>Your shopping cart</h2>
-      <div className="cart-item-container">
-        {cartItems.map((item:any)=>{
-          return (
-            <div key={item.id} className="cart-item">
-              <div className="cart-item-image">
-                <img src={item.image} alt="" />
+
+  }
+
+  const getTotalAmount = () => {
+    const totalAmount = cartItems.reduce((accumulator, item) => {
+      return accumulator + parseFloat(item.price) * item.quantity;
+    }, 0);
+  
+    return totalAmount;
+  };
+  
+  // Exemplo de uso
+  const totalAmount = getTotalAmount();
+
+    return ( 
+      <div className="cart-container">
+        <div className="cart-header">
+          <ButtonHome />
+        </div>
+        <div className="cart-item-container">
+          {cartItems.map((item:any)=>{
+            return (
+              <div key={item.id} className="cart-item">
+                <div className="cart-item-image">
+                  <img src={item.image} alt="" />
+                </div>
+                <h2 className="cart-item-title">{item.title}</h2>
+                <span className="cart-item-price">R$ {item.price}</span>
+                <div className="cart-quantity-items">
+                  <span>Quantidade </span>
+                  <button className="button-decrement" onClick={()=>handleDecrement(item.id)}>-</button>
+                    {item.quantity}
+                  <button className='button-increment' onClick={()=>handleIncrement(item.id)}>+</button>
+                </div>
+                <button className="cart-item-delete" onClick={() => handleProductDeleted(item.id)}>Excluir</button>
+                <span className="cart-item-amount">
+                 R$ { (parseFloat(item.price) * item.quantity) } 
+                </span>
               </div>
-              <h2 className="cart-item-title">{item.title}</h2>
-              <span className="cart-item-price">R$ {item.price}</span>
-              <div className="cart-quantity-items">
-                <span>Quantidade</span>
-                <Select options={options} value={selectedValue} onChange={handleSelectChange} />
-              </div>
-              <button className="cart-item-delete" onClick={() => handleProductDeleted(item.id)}>Excluir</button>
-              <span className="cart-item-amount">
-               R$ {(parseFloat(item.price) * parseFloat(selectedValue))} 
-              </span>
-             
-            </div>
-            
-          )
-        })}
-        <div className="cart-subtotal">
-          Subtotal R$ {}
+            )
+          })}
+          <div className="cart-subtotal">
+            <span>Subtotal  R$ {totalAmount.toFixed(2)}</span>
+          </div>
         </div>
       </div>
-    </div>
-
-
-   );
-}
- 
+  
+  
+     );
+  }
+  
 export default Cart;

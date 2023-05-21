@@ -14,7 +14,8 @@
   align-items: center;
   border: 1px solid global.$border-color;
   border-radius: 10px;
-
+  text-transform: capitalize;
+  background: none;
 
   &:hover {
     cursor: pointer;
