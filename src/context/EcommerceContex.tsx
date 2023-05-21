@@ -105,17 +105,24 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     }
   };
 
-  const getTotalQuantity = (): number => {
-    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-    localStorage.setItem('cartQuantity', totalQuantity.toString());
-    const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
-    let value = 0;
+  // const getTotalQuantity = (): number => {
+  //   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  //   localStorage.setItem('cartQuantity', totalQuantity.toString());
+  //   const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
+  //   let value = 0;
   
-     if (cartQuantityFromStorage) {
-      value = parseInt(cartQuantityFromStorage, 10);
-    }
-    return cartQuantityFromStorage ? parseInt(cartQuantityFromStorage, 10):value;
-  };
+  //    if (cartQuantityFromStorage) {
+  //     value = parseInt(cartQuantityFromStorage, 10);
+  //   }
+  //   return cartQuantityFromStorage ? parseInt(cartQuantityFromStorage, 10):value;
+  // };
+  
+const getTotalQuantity = (): number => {
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  localStorage.setItem('cartQuantity', totalQuantity.toString());
+  const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
+  return parseInt(cartQuantityFromStorage ?? '0', 10);
+};
  
   // Quantitades de items no carrinh
   const cartQuantity = getTotalQuantity();
