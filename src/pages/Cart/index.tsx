@@ -27,6 +27,7 @@ const Cart = () => {
   }
 
   const getTotalAmount = () => {
+    
     const totalAmount = cartItems.reduce((accumulator, item) => {
       return accumulator + parseFloat(item.price) * item.quantity;
     }, 0);

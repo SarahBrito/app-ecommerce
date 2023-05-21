@@ -13,7 +13,7 @@ const IconCart = () => {
         <Link to={'/cart'}>
           <IoCartOutline size={25}/>
         </Link>
-        <span>{cartQuantity}</span>
+        <span>{cartQuantity ? cartQuantity: 0}</span>
        
       </div>
    );

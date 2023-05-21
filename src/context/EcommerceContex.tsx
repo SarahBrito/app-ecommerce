@@ -36,15 +36,16 @@ export const EcommerceContext = createContext({} as EcommerceContextProps);
 
 const storedValue = localStorage.getItem('products');
 const productsFromLocalStorage = storedValue ? JSON.parse(storedValue): null
-
+// const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
 
 const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
 
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState<Product[]>(productsFromLocalStorage)
+  const [cartItems, setCartItems] = useState<Product[]>(productsFromLocalStorage || [])
   const [initialProducts, setInitialProducts] = useState([]);
   const [searchTitle, setSearchTitle] = useState('');
   const [quantity, setQuantity] = useState(0);
+  // const [teste, setTeste] = useState(cartQuantityFromStorage)
   
   useEffect(()=>{
     localStorage.setItem("products", JSON.stringify(cartItems))
@@ -105,23 +106,13 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     }
   };
 
-  // const getTotalQuantity = (): number => {
-  //   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-  //   localStorage.setItem('cartQuantity', totalQuantity.toString());
-  //   const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
-  //   let value = 0;
   
-  //    if (cartQuantityFromStorage) {
-  //     value = parseInt(cartQuantityFromStorage, 10);
-  //   }
-  //   return cartQuantityFromStorage ? parseInt(cartQuantityFromStorage, 10):value;
-  // };
-  
-const getTotalQuantity = (): number => {
-  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-  localStorage.setItem('cartQuantity', totalQuantity.toString());
-  const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
-  return parseInt(cartQuantityFromStorage ?? '0', 10);
+  const getTotalQuantity = (): number => {
+    
+    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+    localStorage.setItem('cartQuantity', totalQuantity.toString());
+    const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
+    return parseInt(cartQuantityFromStorage ?? '0', 10);
 };
  
   // Quantitades de items no carrinh
@@ -129,8 +120,8 @@ const getTotalQuantity = (): number => {
   
 
   const addToCart = (productItem: Product) => {
-  
-  const itemIndex = cartItems.findIndex((item) => item.id === productItem.id);
+    
+    const itemIndex = cartItems.findIndex((item) => item.id === productItem.id);
 
   if (itemIndex !== -1) {
     // Item já está no carrinho
