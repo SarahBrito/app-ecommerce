@@ -35,8 +35,7 @@ const Cart = () => {
   
     return totalAmount;
   };
-  
-  // Exemplo de uso
+
   const totalAmount = getTotalAmount();
 
     return ( 

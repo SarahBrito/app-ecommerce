@@ -1,34 +1,23 @@
-import './style.scss'
 
 import IconCart from '../iconCart';
-import { useState } from 'react';
+import { useEcommerce } from '../../context/EcommerceContex';
+
+import './style.scss'
 
 const Header = () => {
+
+  const {handleSearchInputChange, searchTitle} = useEcommerce()
   
-  const [searchValue, setSearchValue] = useState('');
   
-
-  const handleSearchChange = (event:any) => {
-    setSearchValue(event.target.value);
-  };
-
-  const handleSearchSubmit = (event:any) => {
-    event.preventDefault();
-    console.log('Valor da busca:', searchValue);
-  };
-
    return ( 
     <header>
-      <form onSubmit={handleSearchSubmit}>
-        <input 
+      <input 
         type="text" 
-        value={searchValue} 
+        value={searchTitle} 
         className="search-product" 
         placeholder="Search product" 
-        onChange={handleSearchChange}
+        onChange={handleSearchInputChange}
         />
-      </form>
-      
       <IconCart />
     </header>
    );

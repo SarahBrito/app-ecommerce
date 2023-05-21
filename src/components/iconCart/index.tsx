@@ -6,15 +6,15 @@ import './style.scss'
 
 const IconCart = () => {
 
-  const { quantityCartItems } = useEcommerce()
+  const { cartQuantity } = useEcommerce()
 
   return ( 
     <div className="icon-cart">
         <Link to={'/cart'}>
           <IoCartOutline size={25}/>
         </Link>
-        
-        <span>{quantityCartItems}</span>
+        <span>{cartQuantity}</span>
+       
       </div>
    );
 }
