@@ -13,8 +13,7 @@ const Cart = () => {
     const item = cartItems.find((item) => item.id === itemId);
     if (item && item.quantity > 1) {
       updateItemValue(itemId, item.quantity - 1);
-    }
-    };
+    }};
   
   const handleIncrement = (itemId: number) => {
     const item = cartItems.find((item) => item.id === itemId);
@@ -25,7 +24,6 @@ const Cart = () => {
   
   const handleProductDeleted = (id:number) => {
     return removeProduct(id)
-
   }
 
   const getTotalAmount = () => {
