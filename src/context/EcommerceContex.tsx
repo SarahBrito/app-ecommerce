@@ -114,10 +114,10 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
      if (cartQuantityFromStorage) {
       value = parseInt(cartQuantityFromStorage, 10);
     }
-    return value;
+    return cartQuantityFromStorage ? parseInt(cartQuantityFromStorage, 10):value;
   };
  
-  // Quantitades de items no carrinho
+  // Quantitades de items no carrinh
   const cartQuantity = getTotalQuantity();
   
 
