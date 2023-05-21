@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import Swal from 'sweetalert2';
 import { useEcommerce } from '../../context/EcommerceContex';
 
@@ -21,17 +22,9 @@ interface Product {
 const Details = () => {
   const {id} = useParams()
   const {addToCart} = useEcommerce()
-
+    
   const [product, setProduct] = useState<Product | null >(null);
 
-  // useEffect(() => {
-  //   fetch(`https://fakestoreapi.com/products/${id}`)
-  //           .then(res =>res.json())
-  //           .then(json => {
-  //             setproduct(json)
-  //           })
-  // }, [id]);
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,7 +59,7 @@ const Details = () => {
       Swal.fire({
         position: 'top-end',
         icon: 'success',
-        text: `Produto adicionado ao carrinho`,
+        text: `Product added to cart`,
         showConfirmButton: false,
         timer: 1500,
         width: 500,

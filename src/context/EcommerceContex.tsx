@@ -26,6 +26,7 @@ interface EcommerceContextProps {
   updateItemValue: (itemId:number, newValue:number) => void
   searchProductsByTitle: (title:string) => void
   handleSearchInputChange: (event: ChangeEvent<HTMLInputElement>) =>void
+  clearCart: ()=> void
 }
 
 interface EcommerceProvaiderProps {
@@ -45,8 +46,7 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
   const [initialProducts, setInitialProducts] = useState([]);
   const [searchTitle, setSearchTitle] = useState('');
   const [quantity, setQuantity] = useState(0);
-  // const [teste, setTeste] = useState(cartQuantityFromStorage)
-  
+    
   useEffect(()=>{
     localStorage.setItem("products", JSON.stringify(cartItems))
   },[cartItems])
@@ -56,7 +56,6 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
   }, []);
 
  
-
   async function getProductsCategories (category:string) {
     
     const response = await fetch(`https://fakestoreapi.com/products/category/${category}`)
@@ -141,6 +140,9 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
 
   }
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
 
   const removeProduct = (productId:number) => {
     const updateCart = cartItems.filter((item) => item.id !== productId);
@@ -150,7 +152,7 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      text: `Produto removido do carrinho`,
+      text: `Product removed from cart`,
       showConfirmButton: false,
       timer: 1500,
       width: 500,
@@ -170,7 +172,8 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
       searchProductsByTitle,
       handleSearchInputChange,
       searchTitle,
-      cartQuantity
+      cartQuantity,
+      clearCart
       }}>
       {children}
     </EcommerceContext.Provider>
@@ -193,7 +196,8 @@ export const useEcommerce = () =>{
     searchProductsByTitle,
     handleSearchInputChange,
     searchTitle,
-    cartQuantity
+    cartQuantity,
+    clearCart
   } = context
 
   return {
@@ -209,7 +213,8 @@ export const useEcommerce = () =>{
     searchProductsByTitle,
     handleSearchInputChange,
     searchTitle,
-    cartQuantity
+    cartQuantity,
+    clearCart
   }
 }
 

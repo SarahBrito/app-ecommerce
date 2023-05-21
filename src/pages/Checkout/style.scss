@@ -1,0 +1,19 @@
+
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.success-message {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  font-size: 24px;
+}
+

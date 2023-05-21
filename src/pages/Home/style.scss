@@ -10,3 +10,9 @@
   padding: 48px;
   border: 1px solid global.$border-color;
 }
+
+@media(max-width: 465px){
+  .home {
+    padding: 48px 24px;
+  }
+}
