@@ -83,6 +83,7 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     // Atualizar o estado `products` com a lista filtrada
     setProducts(filteredProducts);
   };
+  
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchTitle(value);

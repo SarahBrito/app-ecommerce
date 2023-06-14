@@ -88,7 +88,6 @@ const Details = () => {
               <p>{product?.description}</p>
             </div>
           </section>
-    
     </div>
    );
 }

@@ -61,7 +61,7 @@ const Cart = () => {
               </div>
               <button className="cart-item-delete" onClick={() => handleProductDeleted(item.id)}>Excluir</button>
               <span className="cart-item-amount">
-               R$ { (parseFloat(item.price) * item.quantity) } 
+               R$ { (parseFloat(item.price) * item.quantity)} 
               </span>
             </div>
           )
