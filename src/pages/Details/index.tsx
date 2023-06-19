@@ -81,7 +81,7 @@ const Details = () => {
               <h2>{product?.title}</h2>
               <span>R$ {product?.price}</span>
               
-              <button className='btn-add-cart' onClick={handleAddToCart}>Adicionar ao carrinho</button>
+              <button className='btn-add-cart' onClick={handleAddToCart}>Add to cart</button>
             </div>
             <div className="product-description">
               <h2>Description</h2>

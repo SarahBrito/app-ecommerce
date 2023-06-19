@@ -4,7 +4,7 @@ import './style.scss'
 
 const ButtonHome = () => {
   return ( 
-    <Link to={'/'} className='back-home'>Voltar</Link>
+    <Link to={'/'} className='back-home'>Back</Link>
    );
 }
  
