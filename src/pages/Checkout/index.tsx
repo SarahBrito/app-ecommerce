@@ -1,4 +1,5 @@
 import {BsFillCheckSquareFill} from 'react-icons/bs'
+import { TbConfetti } from "react-icons/tb";
 
 import './style.scss'
 import ButtonHome from '../../components/buttonHome'
@@ -10,8 +11,10 @@ const Checkout = () => {
       <ButtonHome />
      </header>
       <div className='success-message'>
-        <h1>Success</h1>
-        <BsFillCheckSquareFill size={48} color={'#0eeba9'}/>
+        <TbConfetti size={45} color={'#7243E0'} />
+        <h1>Successful purchase</h1>
+        <BsFillCheckSquareFill size={45} color={'#0eeba9'}/>
+        
       </div>
     </div>
    );

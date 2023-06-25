@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import ButtonHome from "../../components/buttonHome";
 
 import { useEcommerce } from "../../context/EcommerceContex";
+import { RiDeleteBin6Line } from "react-icons/ri"
+import { BsCartX } from "react-icons/bs"
+
 
 import './style.scss';
 
@@ -43,7 +46,12 @@ const Cart = () => {
         <div className="cart-header">
           <ButtonHome />
         </div>
-        {cartItems.length === 0 ? <p className="empty-cart-message">Carrinho vazio...</p>:
+        {cartItems.length === 0 ? 
+        <div className="empty-cart-message">
+          <BsCartX />
+          <span>Your Cart is Empty</span>
+          
+        </div>:
         <div className="cart-item-container">
         {cartItems.map((item:any)=>{
           return (
@@ -59,7 +67,7 @@ const Cart = () => {
                   {item.quantity}
                 <button className='button-increment' onClick={()=>handleIncrement(item.id)}>+</button>
               </div>
-              <button className="cart-item-delete" onClick={() => handleProductDeleted(item.id)}>Excluir</button>
+              <button className="cart-item-delete" onClick={() => handleProductDeleted(item.id)}><RiDeleteBin6Line size={20}/></button>
               <span className="cart-item-amount">
                R$ { (parseFloat(item.price) * item.quantity)} 
               </span>
