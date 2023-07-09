@@ -1,6 +1,7 @@
 # App E-commerce
 Este é um aplicativo de e-commerce desenvolvido em React que permite aos usuários explorar uma variedade de produtos.
 
+![Alt text](<public/Captura de tela de 2023-07-09 09-56-26.png>)
 ## Funcionalidades
 
 - [x] Listagem de produtos por categoria
@@ -18,3 +19,5 @@ Este é um aplicativo de e-commerce desenvolvido em React que permite aos usuár
   - React Hooks
   - React Context
   - Typescript
+
+  
