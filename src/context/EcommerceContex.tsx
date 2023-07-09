@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, ChangeEvent } from 'react';
 
 import Swal from 'sweetalert2';
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: string,
@@ -37,7 +37,6 @@ export const EcommerceContext = createContext({} as EcommerceContextProps);
 
 const storedValue = localStorage.getItem('products');
 const productsFromLocalStorage = storedValue ? JSON.parse(storedValue): null
-// const cartQuantityFromStorage = localStorage.getItem('cartQuantity');
 
 const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
 
@@ -106,7 +105,6 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     }
   };
 
-  
   const getTotalQuantity = (): number => {
     
     const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -115,10 +113,9 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     return parseInt(cartQuantityFromStorage ?? '0', 10);
 };
  
-  // Quantitades de items no carrinh
+  // Quantidades de items no carrinho
   const cartQuantity = getTotalQuantity();
   
-
   const addToCart = (productItem: Product) => {
     
     const itemIndex = cartItems.findIndex((item) => item.id === productItem.id);
@@ -138,7 +135,6 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
   }
 
   setQuantity(quantity + 1);
-
   }
 
   const clearCart = () => {
@@ -149,7 +145,6 @@ const EcommerceProvider = ({ children }: EcommerceProvaiderProps) => {
     const updateCart = cartItems.filter((item) => item.id !== productId);
     setCartItems(updateCart);
     
-
     Swal.fire({
       position: 'top-end',
       icon: 'success',

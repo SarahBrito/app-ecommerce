@@ -8,7 +8,6 @@ const Header = () => {
 
   const {handleSearchInputChange, searchTitle} = useEcommerce()
   
-  
    return ( 
     <header>
       <input 

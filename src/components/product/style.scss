@@ -13,6 +13,7 @@
   transition-timing-function: ease;
  
   border: 1px solid #e8e5e5;
+  
 
   &:hover {
     cursor: pointer;
@@ -31,6 +32,7 @@
 
 .product-image {
   background-color: global.$primary-color;
+  background-color: #E8E8E8;
   width: 258px;
   height: 258px;
   display: flex;

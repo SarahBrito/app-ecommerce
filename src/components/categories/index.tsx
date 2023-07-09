@@ -3,13 +3,14 @@ import './style.scss'
 import { useEcommerce } from "../../context/EcommerceContex";
 import { useState } from 'react';
 
+
 const Categories = () => {
   const {handleShowCategoriesAll, getProductsCategories} = useEcommerce()
-
-
-  const [activeFilter, setActiveFilter] = useState('all');
+  
+  const [activeFilter, setActiveFilter] =  useState('all');
 
   const handleFilterTasks = (filter:string) => {
+   
     if (filter === 'all') {
       handleShowCategoriesAll()
     } else if (filter === 'electronics') {
@@ -34,19 +35,34 @@ const getFilterClass = (filter:string) => {
 
   return ( 
     <div className="categories">
-        <button className={`category-item ${getFilterClass('all')}`} onClick={()=> handleFilterTasks('all')}>
+        <button 
+          className={`category-item ${getFilterClass('all')}`} 
+          onClick={()=> handleFilterTasks('all')}
+        >
           all categories
         </button>
-        <button className={`category-item ${getFilterClass('electronics')}`} onClick={() => handleFilterTasks('electronics')}>
+        <button 
+          className={`category-item ${getFilterClass('electronics')}`} 
+          onClick={() => handleFilterTasks('electronics')}
+        >
           eletronics
         </button>
-        <button className={`category-item ${getFilterClass('jewelery')}`} onClick={() => handleFilterTasks('jewelery')} >
+        <button 
+          className={`category-item ${getFilterClass('jewelery')}`} 
+          onClick={() => handleFilterTasks('jewelery')}
+        >
         jewelery
         </button>
-        <button className={`category-item ${getFilterClass("men's clothing")}`} onClick={() => handleFilterTasks("men's clothing")}>
+        <button 
+        className={`category-item ${getFilterClass("men's clothing")}`} 
+        onClick={() => handleFilterTasks("men's clothing")}
+        >
           men's clothing
         </button>
-        <button className={`category-item ${getFilterClass("women's clothing")}`} onClick={() => handleFilterTasks("women's clothing")}>
+        <button 
+          className={`category-item ${getFilterClass("women's clothing")}`} 
+          onClick={() => handleFilterTasks("women's clothing")}
+        >
           women's clothin
         </button>
     </div>

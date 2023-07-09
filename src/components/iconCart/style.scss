@@ -1,3 +1,4 @@
+@use '../../global.scss';
 
 .icon-cart {
   display: flex;
@@ -6,7 +7,7 @@
   position: relative;
 
   span {
-    background-color:#dcdcdc;
+    background-color: global.$bg-button;
     height: 20px;
     width: 20px;
     border-radius: 50px;
