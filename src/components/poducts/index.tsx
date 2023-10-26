@@ -1,6 +1,6 @@
 
 import { useEcommerce } from "../../context/EcommerceContex";
-import Product from "../product";
+import ProductCart from "../productCart";
 
 import './style.scss'
 
@@ -12,7 +12,7 @@ const Products = () => {
       <div className="products">
         {products.map((item)=>{
           return (
-            <Product item={item}  key={item.id}/>
+            <ProductCart item={item}  key={item.id}/>
           )
         })}
       </div>

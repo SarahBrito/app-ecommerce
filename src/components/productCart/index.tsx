@@ -4,7 +4,7 @@ import './style.scss'
 import { roundValue } from '../../utils/round-value';
 import { Product } from '../../context/EcommerceContex';
 
-const Product = ({item}: { item: Product}) => {
+const ProductCard = ({item}: { item: Product}) => {
  
   return ( 
    <Link to={`datails/${item.id}`} key={item.id}> 
@@ -22,4 +22,4 @@ const Product = ({item}: { item: Product}) => {
    );
 }
  
-export default Product;
+export default ProductCard;
